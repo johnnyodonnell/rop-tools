@@ -1,0 +1,4 @@
+
+* This script prints shellcode as a debugger displays it when it's
+    in memory
+
