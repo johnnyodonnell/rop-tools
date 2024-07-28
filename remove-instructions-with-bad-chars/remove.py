@@ -1,8 +1,12 @@
 import sys
 
 
+# Input
 filename = sys.argv[1]
 bad_chars = sys.argv[2]
+num_of_bytes_to_check = 4
+if len(sys.argv) > 3:
+    num_of_bytes_to_check = int(sys.argv[3])
 
 bad_chars_arr = bad_chars.split("\\x")
 bad_chars_arr = bad_chars_arr[1:]
@@ -13,7 +17,7 @@ for bad_char in bad_chars_arr:
     bad_chars_set.add(int(bad_char, 16))
 
 def has_bad_char(addr):
-    for i in range(0,4):
+    for i in range(0, num_of_bytes_to_check):
         byte = (addr >> (i * 8)) & 0xFF
         if byte in bad_chars_set:
             return True
